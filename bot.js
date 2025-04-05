@@ -47,13 +47,14 @@ bot.on("message", (msg) => {
     const text = msg.text.trim();
     if (text === "/help"){
         bot.sendMessage(chatId,"Dimmi un nome di un artista ed io ti darò tutte le informazioni su di lui")
+    }else{
+        // Ottieni informazioni sull'artista
+        getArtistInfo(text, (error, artistInfo) => {
+            if (error) {
+                bot.sendMessage(chatId, error);
+            } else {
+                bot.sendMessage(chatId, artistInfo);
+            }
+        });
     }
-    // Ottieni informazioni sull'artista
-    getArtistInfo(text, (error, artistInfo) => {
-        if (error) {
-            bot.sendMessage(chatId, error);
-        } else {
-            bot.sendMessage(chatId, artistInfo);
-        }
-    });
 });
