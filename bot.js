@@ -45,7 +45,9 @@ Link: ${artist.url || "N/A"}`);
 bot.on("message", (msg) => {
     const chatId = msg.chat.id;
     const text = msg.text.trim();
-
+    if (text === "/help"){
+        bot.sendMessage(chatId,"Dimmi un nome di un artista ed io ti darò tutte le informazioni su di lui")
+    }
     // Ottieni informazioni sull'artista
     getArtistInfo(text, (error, artistInfo) => {
         if (error) {
